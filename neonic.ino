@@ -13,7 +13,7 @@
 
 
 volatile int colors[LEDS];
-uint8_t mode = 0;       // переменная режима
+uint8_t mode = 0;
 int ledDelay = 500;
 int direction = 1;
 int currentLed = 0;
@@ -42,7 +42,7 @@ void setup() {
 }
 
 void enc() {
-  enc1.tick(); // отработка в прерывании
+  enc1.tick();
 
   if (enc1.isLeft())  {
     ledDelay = ledDelay - 50;
@@ -61,21 +61,21 @@ void enc() {
     EEPROM.put(0, mode);
 
   }
-  if(enc1.isLeftH())  {
-ledBrigth = ledBrigth - 10; 
-if(ledBrigth = 0) ledBrigth = 10;
+  if (enc1.isLeftH())  {
+    ledBrigth = ledBrigth - 10;
+    if (ledBrigth = 0) ledBrigth = 10;
   }
-  if (enc1.isRightH()){
-    ledBrigth = ledBrigth + 10; 
-    if(ledBrigth = 250) ledBrigth = 250;
-  
-    
-    }
+  if (enc1.isRightH()) {
+    ledBrigth = ledBrigth + 10;
+    if (ledBrigth = 250) ledBrigth = 250;
+
+
+  }
 }
 
 
 void loop() {
-  
+
   checkEEPROM();
   enc();
   static uint32_t timer = millis();
@@ -110,7 +110,7 @@ void changeLed() {
   }
   digitalWrite(pins[currentLed], 1);
   currentLed += direction;
-  if (currentLed == LEDS-1 ) {
+  if (currentLed == LEDS - 1 ) {
     direction = -1;
   }
   if (currentLed == 0) {
@@ -141,7 +141,7 @@ void changeLed3() {
     for (int i = 0; i < LEDS; i++) {
       digitalWrite(pins[i], LOW);
     }
-    i=0;
+    i = 0;
   }
 }
 
@@ -238,9 +238,8 @@ ISR(TIMER2_A) {
 
 
 void checkEEPROM() {
-  // если флаг поднят и с последнего нажатия прошло 10 секунд (10 000 мс)
   if (eepromFlag && (millis() - eepromTimer >= 10000) ) {
-    eepromFlag = false;           // опустили флаг
-    EEPROM.put(1, ledDelay);     // записали в EEPROM
+    eepromFlag = false;
+    EEPROM.put(1, ledDelay);
   }
 }
