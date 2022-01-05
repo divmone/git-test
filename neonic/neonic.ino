@@ -1,7 +1,7 @@
 
 
-#define SW 4      // кнопка подключена сюда (PIN --- КНОПКА --- GND)
-#define MODE_AM 6   // количество режимов (от 0 до указанного)
+#define SW 4    
+#define MODE_AM 6   
 #define LEDS 5
 #define CLK 2  //s1
 #define DT 3 //s2
